@@ -1,0 +1,29 @@
+SELECT *
+From superstore
+order by price desc
+
+SELECT SUM (price)
+FROM superstore
+
+SELECT AVG(price)
+FROM superstore
+
+SELECT MIN(price)
+FROM superstore
+
+SELECT MAX(price)
+FROM superstore
+
+SELECT COUNT(price) 
+FROM superstore
+
+SELECT(category),price,item_name,item_id,stock_quantity
+FROM (superstore)
+WHERE category="Kitchen Supplies"
+ORDER BY price desc
+
+SELECT*
+FROM superstore
+WHERE average_rating>4.4
+ORDER BY average_rating desc
+–What items have a rating of 4.5 or higher?
