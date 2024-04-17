@@ -50,13 +50,13 @@ FROM superstore
 SELECT COUNT(price) 
 FROM superstore
 
-#Show a statistic about the price for items in the category of "Kitchen Supplies". 
+#This is a statistic about the price for items in the category of "Kitchen Supplies". 
 SELECT(category),price,item_name,item_id,stock_quantity
 FROM (superstore)
 WHERE category="Kitchen Supplies"
 ORDER BY price desc
 
-#What items have a rating of 4.5 or higher?
+#Items that have a rating of 4.5 or higher?
 SELECT*
 FROM superstore
 WHERE average_rating>4.4
