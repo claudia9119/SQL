@@ -24,64 +24,56 @@ duration_ms integer NOT NULL,
 time_signature integer NOT NULL 
 )
 
-#Then I inserted the Spotify Data .csv into the table.
+# Then I inserted the Spotify Data .csv into the table.
 
-#Next, I explored the data using the following SQL. 
+# Next, I explored the data using the following SQL. 
 
-SELECT distinct artist_name
-FROM Spotifydata
-
+# Popularity of Olivia Rodrigo songs.
 select artist_name,track_name,popularity
 from Spotifydata
-where artist_name = 'Olivia Rodrigo';
+where artist_name = 'Olivia Rodrigo'
+order by popularity desc;
 
+# Order of songs by popularity.
 SELECT artist_name,track_name,popularity
 FROM Spotifydata
-order by popularity desc
+order by popularity desc;
 
+# Top ten most popular artists.
 SELECT artist_name, avg(popularity) as AvgPopularity
 FROM Spotifydata
 GROUP BY artist_name
 order by AvgPopularity desc
 limit 10;
 
+# The longest song.
 SELECT artist_name,track_name, MAX(duration_ms)
 FROM Spotifydata;
 
-SELECT artist_name,track_name, duration_ms FROM Spotifydata
-ORDER BY duration_ms desc LIMIT 1;
-
-SELECT artist_name,track_name,danceability FROM Spotifydata
-ORDER BY danceability desc;
-
+# The top 20 most danceable songs.
 SELECT artist_name,track_name,danceability FROM Spotifydata
 ORDER BY danceability desc
-LIMIT 1; 
+LIMIT 20;
 
-SELECT artist_name,track_name,energy FROM Spotifydata
-order by energy desc; 
-
+# Songs that could be used for a workout playlist.
 SELECT artist_name,track_name,energy FROM Spotifydata
 where energy >= .7
 order by energy desc; 
 
+# A list of the average dacneability of each song from most danceable to least.
 SELECT artist_name,track_name,AVG(danceability) FROM Spotifydata
 GROUP BY artist_name,track_name
 ORDER BY AVG(danceability) desc;
 
+# This is a list of songs ordered by popularity and danceability.
 SELECT artist_name,track_name,danceability,popularity FROM Spotifydata
 ORDER BY popularity desc, danceability desc LIMIT 10; 
 
-SELECT artist_name,track_name,AVG(danceability),popularity FROM Spotifydata
-GROUP BY artist_name,track_name 
-ORDER BY popularity desc ; 
-
-SELECT artist_name,track_name, AVG(danceability), popularity FROM Spotifydata
-GROUP BY artist_name, track_name ; 
-
+# This is the popularity, danceability and energy of songs by each artist.
 SELECT artist_name,track_name,popularity,danceability,energy FROM Spotifydata
 GROUP BY artist_name, track_name;
 
+# I determined the avg popularity, danceability, and energy by artist and track. 
 SELECT
 artist_name
 ,track_name
@@ -91,6 +83,7 @@ artist_name
 FROM BIT_DB.spotifydata
 GROUP BY artist_name, track_name
 
+# I calculated the average popularity for the artists in the Spotify data table. I then named the artists with poplarity of 90 or above as Top Star
 WITH temptable AS (
 SELECT artist_name, AVG(popularity) as avg_popularity
 FROM Spotifydata
@@ -99,15 +92,3 @@ GROUP BY artist_name
 SELECT artist_name, avg_popularity, 'Top Star' AS tag
 FROM temptable
 WHERE avg_popularity >=90;
-
-WITH popularity_average_CTE AS (
-SELECT s.artist_name,
-AVG(s.popularity) AS average_popularity
-FROM SpotifyData s 
-GROUP BY s.artist_name
-)
-SELECT  artist_name,
-        average_popularity,
-        'Top Star' AS tag
-FROM popularity_average_CTE
-WHERE average_popularity>=90;
