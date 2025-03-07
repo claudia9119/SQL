@@ -1,0 +1,15 @@
+## I've analyzed the City Bike Lanes dataset to identify 
+streets with an average safety rating of 4 or higher.
+These lanes have been designated as "Safe Lanes" 
+based on their aggregated safety scores.
+
+
+WITH avg_safety_cte AS (
+SELECT street, avg(safetyrating) as rating
+FROM CityBikeLanes
+where safetyrating >= 4
+group by street
+)
+select street, rating, 'Safe Lane' as Label
+from avg_safety_cte
+order by rating desc;
