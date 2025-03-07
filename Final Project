@@ -17,7 +17,7 @@ SELECT FirstName, LastName, Title
 FROM chinook.employees
 WHERE Title = 'Sales Support Agent'
 
-5
+5 
 SELECT distinct BillingCountry
 FROM chinook.invoices
 
