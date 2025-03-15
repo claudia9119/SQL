@@ -83,7 +83,8 @@ artist_name
 FROM BIT_DB.spotifydata
 GROUP BY artist_name, track_name
 
-# I calculated the average popularity for the artists in the Spotify data table. I then named the artists with poplarity of 90 or above as Top Star
+# I calculated the average popularity for the artists in the Spotify data table. 
+I then named the artists with poplarity of 90 or above as Top Star
 WITH temptable AS (
 SELECT artist_name, AVG(popularity) as avg_popularity
 FROM Spotifydata
