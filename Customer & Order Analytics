@@ -17,7 +17,6 @@ AND Product = 'iPhone';
 3. Select the customer account numbers for all the orders that were placed in February. 
 SELECT distinct acctnum
 FROM BIT_DB.customers cust
-
 INNER JOIN BIT_DB.FebSales Feb
 ON cust.order_id=FEB.orderid
 WHERE length(orderid) = 6
@@ -74,20 +73,16 @@ GROUP BY Product;
 11. What was the average amount spent per account in February?
 SELECT avg(quantity*price)
 FROM BIT_DB.FebSales Feb
-
 LEFT JOIN BIT_DB.customers cust
 ON FEB.orderid=cust.order_id
-
 WHERE length(orderid) = 6 
 AND orderid <> 'Order ID';
 
 12. What was the average quantity of products purchased per account in February? 
 select sum(quantity)/count(cust.acctnum)
 FROM BIT_DB.FebSales Feb
-
 LEFT JOIN BIT_DB.customers cust
 ON FEB.orderid=cust.order_id
-
 WHERE length(orderid) = 6 
 AND orderid <> 'Order ID';
 
